@@ -634,5 +634,18 @@ namespace AnyCAD.Basic
 
             renderView.RequestDraw();
         }
+
+        private void filletToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            TopoShape line1 = GlobalInstance.BrepTools.MakeLine(Vector3.ZERO, new Vector3(100, 100, 0));
+            TopoShape line2 = GlobalInstance.BrepTools.MakeLine(Vector3.ZERO, new Vector3(100, -100, 0));
+            TopoShapeGroup group = new TopoShapeGroup();
+            group.Add(line1);
+            group.Add(line2);
+            TopoShape wire = GlobalInstance.BrepTools.MakeWire(group);
+            TopoShape fillet = GlobalInstance.BrepTools.Chamfer(wire, 10, 10);
+            renderView.ShowGeometry(fillet, 200);
+            renderView.RequestDraw();
+        }
     }
 }

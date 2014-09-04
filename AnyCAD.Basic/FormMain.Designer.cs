@@ -58,6 +58,9 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.projectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projLineToSurfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
+            this.chamferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filletToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geometryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.curveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,9 +72,7 @@
             this.pickGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pickFaceEdgePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
-            this.chamferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.filletToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filletToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -200,59 +201,59 @@
             // sphereToolStripMenuItem
             // 
             this.sphereToolStripMenuItem.Name = "sphereToolStripMenuItem";
-            this.sphereToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sphereToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.sphereToolStripMenuItem.Text = "Sphere";
             this.sphereToolStripMenuItem.Click += new System.EventHandler(this.sphereToolStripMenuItem_Click);
             // 
             // boxToolStripMenuItem
             // 
             this.boxToolStripMenuItem.Name = "boxToolStripMenuItem";
-            this.boxToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.boxToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.boxToolStripMenuItem.Text = "Box";
             this.boxToolStripMenuItem.Click += new System.EventHandler(this.boxToolStripMenuItem_Click);
             // 
             // cylinderToolStripMenuItem
             // 
             this.cylinderToolStripMenuItem.Name = "cylinderToolStripMenuItem";
-            this.cylinderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cylinderToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.cylinderToolStripMenuItem.Text = "Cylinder";
             this.cylinderToolStripMenuItem.Click += new System.EventHandler(this.cylinderToolStripMenuItem_Click);
             // 
             // coneToolStripMenuItem
             // 
             this.coneToolStripMenuItem.Name = "coneToolStripMenuItem";
-            this.coneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.coneToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.coneToolStripMenuItem.Text = "Cone";
             this.coneToolStripMenuItem.Click += new System.EventHandler(this.coneToolStripMenuItem_Click);
             // 
             // customToolStripMenuItem
             // 
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.customToolStripMenuItem.Text = "Custom";
             this.customToolStripMenuItem.Click += new System.EventHandler(this.customToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(136, 6);
             // 
             // textToolStripMenuItem
             // 
             this.textToolStripMenuItem.Name = "textToolStripMenuItem";
-            this.textToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.textToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.textToolStripMenuItem.Text = "Text";
             this.textToolStripMenuItem.Click += new System.EventHandler(this.textToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(136, 6);
             // 
             // largePointsToolStripMenuItem
             // 
             this.largePointsToolStripMenuItem.Name = "largePointsToolStripMenuItem";
-            this.largePointsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.largePointsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.largePointsToolStripMenuItem.Text = "Large Points";
             this.largePointsToolStripMenuItem.Click += new System.EventHandler(this.largePointsToolStripMenuItem_Click);
             // 
@@ -267,7 +268,8 @@
             this.projLineToSurfaceToolStripMenuItem,
             this.toolStripMenuItem7,
             this.chamferToolStripMenuItem,
-            this.filletToolStripMenuItem});
+            this.filletToolStripMenuItem,
+            this.filletToolStripMenuItem1});
             this.featureToolStripMenuItem.Name = "featureToolStripMenuItem";
             this.featureToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.featureToolStripMenuItem.Text = "Feature";
@@ -311,6 +313,25 @@
             this.projLineToSurfaceToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.projLineToSurfaceToolStripMenuItem.Text = "Proj Line to Surface";
             this.projLineToSurfaceToolStripMenuItem.Click += new System.EventHandler(this.projLineToSurfaceToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(173, 6);
+            // 
+            // chamferToolStripMenuItem
+            // 
+            this.chamferToolStripMenuItem.Name = "chamferToolStripMenuItem";
+            this.chamferToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.chamferToolStripMenuItem.Text = "Chamfer";
+            this.chamferToolStripMenuItem.Click += new System.EventHandler(this.chamferToolStripMenuItem_Click);
+            // 
+            // filletToolStripMenuItem
+            // 
+            this.filletToolStripMenuItem.Name = "filletToolStripMenuItem";
+            this.filletToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.filletToolStripMenuItem.Text = "Fillet";
+            this.filletToolStripMenuItem.Click += new System.EventHandler(this.filletToolStripMenuItem_Click);
             // 
             // geometryToolStripMenuItem
             // 
@@ -395,24 +416,12 @@
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem7
+            // filletToolStripMenuItem1
             // 
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(173, 6);
-            // 
-            // chamferToolStripMenuItem
-            // 
-            this.chamferToolStripMenuItem.Name = "chamferToolStripMenuItem";
-            this.chamferToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.chamferToolStripMenuItem.Text = "Chamfer";
-            this.chamferToolStripMenuItem.Click += new System.EventHandler(this.chamferToolStripMenuItem_Click);
-            // 
-            // filletToolStripMenuItem
-            // 
-            this.filletToolStripMenuItem.Name = "filletToolStripMenuItem";
-            this.filletToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.filletToolStripMenuItem.Text = "Fillet";
-            this.filletToolStripMenuItem.Click += new System.EventHandler(this.filletToolStripMenuItem_Click);
+            this.filletToolStripMenuItem1.Name = "filletToolStripMenuItem1";
+            this.filletToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
+            this.filletToolStripMenuItem1.Text = "Fillet 2d";
+            this.filletToolStripMenuItem1.Click += new System.EventHandler(this.filletToolStripMenuItem1_Click);
             // 
             // FormMain
             // 
@@ -478,6 +487,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem chamferToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filletToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filletToolStripMenuItem1;
 
     }
 }
