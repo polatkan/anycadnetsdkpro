@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using AnyCAD.Platform;
 
-namespace AnySample.Basic
+namespace AnyCAD.Basic
 {
-    public class ReadShapeContext : AnyCAD.Platform.ITopoShapeReaderContext
+    public class ReadShapeContext : AnyCAD.Platform.TopoShapeReaderContext
     {
         private int nShapeCount = 100;
 

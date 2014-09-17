@@ -61,6 +61,7 @@
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.chamferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filletToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filletToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.geometryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.curveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,8 @@
             this.pickGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pickFaceEdgePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.filletToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+            this.zoomToObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -131,6 +133,7 @@
             this.edgeWithPointsToolStripMenuItem,
             this.toolStripMenuItem3,
             this.zoomAllToolStripMenuItem,
+            this.zoomToObjectToolStripMenuItem,
             this.toolStripMenuItem5,
             this.showGridToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
@@ -140,45 +143,45 @@
             // shadeToolStripMenuItem
             // 
             this.shadeToolStripMenuItem.Name = "shadeToolStripMenuItem";
-            this.shadeToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.shadeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.shadeToolStripMenuItem.Text = "Shade";
             this.shadeToolStripMenuItem.Click += new System.EventHandler(this.shadeToolStripMenuItem_Click);
             // 
             // shadeWithEdgeToolStripMenuItem
             // 
             this.shadeWithEdgeToolStripMenuItem.Name = "shadeWithEdgeToolStripMenuItem";
-            this.shadeWithEdgeToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.shadeWithEdgeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.shadeWithEdgeToolStripMenuItem.Text = "Shade with edge";
             this.shadeWithEdgeToolStripMenuItem.Click += new System.EventHandler(this.shadeWithEdgeToolStripMenuItem_Click);
             // 
             // edgeWithPointsToolStripMenuItem
             // 
             this.edgeWithPointsToolStripMenuItem.Name = "edgeWithPointsToolStripMenuItem";
-            this.edgeWithPointsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.edgeWithPointsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.edgeWithPointsToolStripMenuItem.Text = "Edge with points";
             this.edgeWithPointsToolStripMenuItem.Click += new System.EventHandler(this.edgeWithPointsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(159, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(168, 6);
             // 
             // zoomAllToolStripMenuItem
             // 
             this.zoomAllToolStripMenuItem.Name = "zoomAllToolStripMenuItem";
-            this.zoomAllToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.zoomAllToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.zoomAllToolStripMenuItem.Text = "Zoom All";
             this.zoomAllToolStripMenuItem.Click += new System.EventHandler(this.zoomAllToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(159, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(168, 6);
             // 
             // showGridToolStripMenuItem
             // 
             this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
-            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.showGridToolStripMenuItem.Text = "Show Grid";
             this.showGridToolStripMenuItem.Click += new System.EventHandler(this.showGridToolStripMenuItem_Click);
             // 
@@ -333,6 +336,13 @@
             this.filletToolStripMenuItem.Text = "Fillet";
             this.filletToolStripMenuItem.Click += new System.EventHandler(this.filletToolStripMenuItem_Click);
             // 
+            // filletToolStripMenuItem1
+            // 
+            this.filletToolStripMenuItem1.Name = "filletToolStripMenuItem1";
+            this.filletToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
+            this.filletToolStripMenuItem1.Text = "Fillet 2d";
+            this.filletToolStripMenuItem1.Click += new System.EventHandler(this.filletToolStripMenuItem1_Click);
+            // 
             // geometryToolStripMenuItem
             // 
             this.geometryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -376,7 +386,8 @@
             this.pickPointToolStripMenuItem,
             this.pickNodeToolStripMenuItem,
             this.pickGroupToolStripMenuItem,
-            this.pickFaceEdgePointToolStripMenuItem});
+            this.pickFaceEdgePointToolStripMenuItem,
+            this.toolStripMenuItem8});
             this.pickToolStripMenuItem.Name = "pickToolStripMenuItem";
             this.pickToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.pickToolStripMenuItem.Text = "Pick";
@@ -416,12 +427,17 @@
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
-            // filletToolStripMenuItem1
+            // toolStripMenuItem8
             // 
-            this.filletToolStripMenuItem1.Name = "filletToolStripMenuItem1";
-            this.filletToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
-            this.filletToolStripMenuItem1.Text = "Fillet 2d";
-            this.filletToolStripMenuItem1.Click += new System.EventHandler(this.filletToolStripMenuItem1_Click);
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(184, 6);
+            // 
+            // zoomToObjectToolStripMenuItem
+            // 
+            this.zoomToObjectToolStripMenuItem.Name = "zoomToObjectToolStripMenuItem";
+            this.zoomToObjectToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.zoomToObjectToolStripMenuItem.Text = "Zoom to Selection";
+            this.zoomToObjectToolStripMenuItem.Click += new System.EventHandler(this.zoomToObjectToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -488,6 +504,8 @@
         private System.Windows.Forms.ToolStripMenuItem chamferToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filletToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filletToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem zoomToObjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
 
     }
 }

@@ -176,19 +176,19 @@ namespace AnyCAD.Basic
 
         private void shadeWithEdgeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renderView.View3d.SetDisplayMode((int)(EnumDisplayStyle.DS_Face | EnumDisplayStyle.DS_Edge | EnumDisplayStyle.DS_Realistic));
+            renderView.View3d.GetRenderer().SetDisplayMode((int)(EnumDisplayStyle.DS_Face | EnumDisplayStyle.DS_Edge | EnumDisplayStyle.DS_Realistic));
             renderView.RequestDraw();
         }
 
         private void shadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renderView.View3d.SetDisplayMode((int)(EnumDisplayStyle.DS_Face|EnumDisplayStyle.DS_Realistic));
+            renderView.View3d.GetRenderer().SetDisplayMode((int)(EnumDisplayStyle.DS_Face | EnumDisplayStyle.DS_Realistic));
             renderView.RequestDraw();
         }
 
         private void edgeWithPointsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renderView.View3d.SetDisplayMode((int)(EnumDisplayStyle.DS_Edge|EnumDisplayStyle.DS_Vertex));
+            renderView.View3d.GetRenderer().SetDisplayMode((int)(EnumDisplayStyle.DS_Edge | EnumDisplayStyle.DS_Vertex));
             renderView.RequestDraw();
         }
 
@@ -329,7 +329,7 @@ namespace AnyCAD.Basic
             renderView.ShowGeometry(arc, 100);
  
             {
-                Platform.GeomeCurve curve = new Platform.GeomeCurve();
+                Platform.GeomCurve curve = new Platform.GeomCurve();
                 curve.Initialize(arc);
 
                 float paramStart = curve.FirstParameter();
@@ -398,7 +398,7 @@ namespace AnyCAD.Basic
 
             renderView.ShowGeometry(face, 101);
 
-            GeomeSurface surface = new GeomeSurface();
+            GeomSurface surface = new GeomSurface();
             surface.Initialize(face);
             float ufirst = surface.FirstUParameter();
             float uLarst = surface.LastUParameter();
@@ -500,12 +500,12 @@ namespace AnyCAD.Basic
 
         private void pickNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renderView.View3d.SetPickMode((int)(EnumPickMode.RF_SceneNode | EnumPickMode.RF_Face));
+            renderView.View3d.GetRenderer().SetPickMode((int)(EnumPickMode.RF_SceneNode | EnumPickMode.RF_Face));
         }
 
         private void pickGroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renderView.View3d.SetPickMode((int)(EnumPickMode.RF_GroupSceneNode | EnumPickMode.RF_Face));
+            renderView.View3d.GetRenderer().SetPickMode((int)(EnumPickMode.RF_GroupSceneNode | EnumPickMode.RF_Face));
 
             // Test Group
             TopoShape cylinder = GlobalInstance.BrepTools.MakeCylinder(Vector3.ZERO, Vector3.UNIT_Z, 50, 100, 0);
@@ -521,14 +521,15 @@ namespace AnyCAD.Basic
 
         private void pickFaceEdgePointToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renderView.View3d.SetPickMode((int)(EnumPickMode.RF_Default));
+            renderView.View3d.GetRenderer().SetPickMode((int)(EnumPickMode.RF_Default));
         }
 
         private bool mShowGrid = true;
         private void showGridToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mShowGrid = !mShowGrid;
-            renderView.View3d.ShowWorkingGrid(mShowGrid);
+            renderView.ShowWorkingGrid(mShowGrid);
+            
             renderView.RequestDraw();
         }
 
@@ -603,7 +604,7 @@ namespace AnyCAD.Basic
                 float[] dis1 = { 10, 5 };
                 float[] dis2 = { 12, 12 };
                 TopoShape chamfer2 = GlobalInstance.BrepTools.MakeChamfer(box, edgeIndex, dis1, dis2);
-                SceneNode node =  renderView.ShowGeometry(chamfer2, 201);
+                SceneNode node = renderView.ShowGeometry(chamfer2, ++shapeId);
 
                 Matrix4 trf = GlobalInstance.MatrixBuilder.MakeTranslate(new Vector3(200, 0, 0));
                 node.SetTransform(trf);
@@ -619,14 +620,14 @@ namespace AnyCAD.Basic
             // Simple
             {
                 TopoShape fillet1 = GlobalInstance.BrepTools.Fillet(box, 10);
-                renderView.ShowGeometry(fillet1, 200);
+                renderView.ShowGeometry(fillet1, ++shapeId);
             }
             // Complex: only fillet the specified edge
             {
                 int[] edgeIndex = { 0, 2 };
                 float[] radius = { 10, 5 };
                 TopoShape fillet2 = GlobalInstance.BrepTools.MakeFillet(box, edgeIndex, radius);
-                SceneNode node = renderView.ShowGeometry(fillet2, 201);
+                SceneNode node = renderView.ShowGeometry(fillet2, ++shapeId);
 
                 Matrix4 trf = GlobalInstance.MatrixBuilder.MakeTranslate(new Vector3(200, 0, 0));
                 node.SetTransform(trf);
@@ -644,8 +645,20 @@ namespace AnyCAD.Basic
             group.Add(line2);
             TopoShape wire = GlobalInstance.BrepTools.MakeWire(group);
             TopoShape fillet = GlobalInstance.BrepTools.Chamfer(wire, 10, 10);
-            renderView.ShowGeometry(fillet, 200);
+            renderView.ShowGeometry(fillet, ++shapeId);
             renderView.RequestDraw();
+        }
+
+        private void zoomToObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuerySelectedShapeContext context = new QuerySelectedShapeContext();
+            renderView.QuerySelection(context);
+            SceneNode node = context.GetSubNode();
+            if (node != null)
+            {
+                renderView.View3d.GetRenderer().FitBBox(node.GetBBox());
+                renderView.RequestDraw();
+            }
         }
     }
 }
