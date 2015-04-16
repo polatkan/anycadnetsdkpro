@@ -2,3 +2,5 @@ AnyCAD.Basic/obj/
 bin/
 AnyCAD.Net.SDK.Sample.suo
 AnyCAD.WPF/obj/
+DxfViewer/obj/
+StpViewer/obj/

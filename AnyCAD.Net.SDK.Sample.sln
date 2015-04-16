@@ -3,16 +3,42 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyCAD.Basic", "AnyCAD.Basic\AnyCAD.Basic.csproj", "{89766480-D042-4E86-B67B-5BB22C6B8F21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StpViewer", "StpViewer\StpViewer.csproj", "{B4AD4738-657A-4BDF-A224-CF51AD629490}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxfViewer", "DxfViewer\DxfViewer.csproj", "{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89766480-D042-4E86-B67B-5BB22C6B8F21}.Debug|x64.ActiveCfg = Debug|x64
+		{89766480-D042-4E86-B67B-5BB22C6B8F21}.Debug|x64.Build.0 = Debug|x64
 		{89766480-D042-4E86-B67B-5BB22C6B8F21}.Debug|x86.ActiveCfg = Debug|x86
 		{89766480-D042-4E86-B67B-5BB22C6B8F21}.Debug|x86.Build.0 = Debug|x86
+		{89766480-D042-4E86-B67B-5BB22C6B8F21}.Release|x64.ActiveCfg = Release|x64
+		{89766480-D042-4E86-B67B-5BB22C6B8F21}.Release|x64.Build.0 = Release|x64
 		{89766480-D042-4E86-B67B-5BB22C6B8F21}.Release|x86.ActiveCfg = Release|x86
 		{89766480-D042-4E86-B67B-5BB22C6B8F21}.Release|x86.Build.0 = Release|x86
+		{B4AD4738-657A-4BDF-A224-CF51AD629490}.Debug|x64.ActiveCfg = Debug|x64
+		{B4AD4738-657A-4BDF-A224-CF51AD629490}.Debug|x64.Build.0 = Debug|x64
+		{B4AD4738-657A-4BDF-A224-CF51AD629490}.Debug|x86.ActiveCfg = Debug|x86
+		{B4AD4738-657A-4BDF-A224-CF51AD629490}.Debug|x86.Build.0 = Debug|x86
+		{B4AD4738-657A-4BDF-A224-CF51AD629490}.Release|x64.ActiveCfg = Release|x64
+		{B4AD4738-657A-4BDF-A224-CF51AD629490}.Release|x64.Build.0 = Release|x64
+		{B4AD4738-657A-4BDF-A224-CF51AD629490}.Release|x86.ActiveCfg = Release|x86
+		{B4AD4738-657A-4BDF-A224-CF51AD629490}.Release|x86.Build.0 = Release|x86
+		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Debug|x64.ActiveCfg = Debug|x64
+		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Debug|x64.Build.0 = Debug|x64
+		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Debug|x86.ActiveCfg = Debug|x86
+		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Debug|x86.Build.0 = Debug|x86
+		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Release|x64.ActiveCfg = Release|x64
+		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Release|x64.Build.0 = Release|x64
+		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Release|x86.ActiveCfg = Release|x86
+		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

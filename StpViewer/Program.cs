@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace AnyCAD.Basic
+namespace StpViewer
 {
     static class Program
     {
@@ -15,8 +15,7 @@ namespace AnyCAD.Basic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            AnyCAD.Platform.GlobalInstance.Application.SetLogFileName("anycad.net.sdk.log");
-            Application.Run(new FormMain());
+            Application.Run(new MainForm());
         }
     }
 }
