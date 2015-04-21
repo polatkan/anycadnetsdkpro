@@ -70,14 +70,17 @@
     <Reference Include="AnyCAD.Exchange.Net, Version=7.0.5583.32054, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\Release\AnyCAD.Exchange.Net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AnyCAD.Foundation.Net, Version=7.0.5583.31926, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\Release\AnyCAD.Foundation.Net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AnyCAD.Presentation.Net, Version=7.0.5583.31995, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\Release\AnyCAD.Presentation.Net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
