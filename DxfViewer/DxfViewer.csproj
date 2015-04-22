@@ -68,6 +68,15 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AnyCAD.Exchange.Net">
+      <HintPath>..\bin\Release\AnyCAD.Exchange.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyCAD.Foundation.Net">
+      <HintPath>..\bin\Release\AnyCAD.Foundation.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyCAD.Presentation.Net">
+      <HintPath>..\bin\Release\AnyCAD.Presentation.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

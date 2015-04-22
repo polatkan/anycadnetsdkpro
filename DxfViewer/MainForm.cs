@@ -53,15 +53,15 @@ namespace DxfViewer
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                AnyCAD.Exchange.DxfReader reader = new AnyCAD.Exchange.DxfReader();
-                renderView.ClearScene();
-                AnyCAD.Exchange.ShowShapeReaderContext context = new AnyCAD.Exchange.ShowShapeReaderContext(renderView.SceneManager);
-                context.NextShapeId = mBeginId;
-                if (reader.Read(dlg.FileName, context, false))
-                {
-                    renderView.RequestDraw();
-                    mEndId = context.NextShapeId;
-                }
+                //AnyCAD.Exchange.DxfReader reader = new AnyCAD.Exchange.DxfReader();
+                //renderView.ClearScene();
+                //AnyCAD.Exchange.ShowShapeReaderContext context = new AnyCAD.Exchange.ShowShapeReaderContext(renderView.SceneManager);
+                //context.NextShapeId = mBeginId;
+                //if (reader.Read(dlg.FileName, context, false))
+                //{
+                //    renderView.RequestDraw();
+                //    mEndId = context.NextShapeId;
+                //}
 
             }
 
@@ -74,7 +74,7 @@ namespace DxfViewer
             dlg.Filter = "PDF (*.pdf)|*.pdf";
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                renderView.PrintToPDF(dlg.FileName);
+                renderView.Renderer.Print(dlg.FileName);
             }
 
         }
