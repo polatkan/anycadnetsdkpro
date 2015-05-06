@@ -21,29 +21,42 @@ namespace DxfViewer
             InitializeComponent();
 
             this.renderView = new AnyCAD.Presentation.RenderWindow3d();
-            this.renderView.Location = new System.Drawing.Point(0, 27);
-            this.renderView.Size = this.Size;
+            this.renderView.Size = this.panel3d.ClientSize;
             this.renderView.TabIndex = 1;
-            this.Controls.Add(this.renderView);
+            panel3d.Controls.Add(this.renderView);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.renderView.ShowCoordinateAxis(true);
-            this.renderView.ShowWorkingGrid(false);
-
+            renderView.ShowWorkingGrid(false);
             renderView.ExecuteCommand("ShadeWithEdgeMode");
-            renderView.ExecuteCommand("TopView");
+            renderView.ShowCoordinateAxis(false);
 
             ColorValue clr = new ColorValue(33f / 255f, 40f / 255f, 48f / 255f, 1);
             renderView.SetBackgroundColor(clr, clr, clr);
+
+            Renderer renderer = renderView.Renderer;
+
+            // Customize the Axis
+            CoordinateWidget coodinateNode = new CoordinateWidget();
+            AxesWidget axesNode = new AxesWidget();
+            axesNode.SetArrowText((int)EnumAxesType.Axes_Z, "");
+            coodinateNode.SetNode(axesNode);
+            coodinateNode.SetWidgetPosition(0);     
+            renderer.SetCoordinateWidget(coodinateNode);
+
+            // Set the fixed Top View
+            renderer.SetStandardView((int)EnumStandardView.SV_Top);
+            renderer.SetViewType((int)EnumStandardView.SV_Top);
+
             this.renderView.RequestDraw();
+
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (renderView != null)
-                renderView.Size = this.Size;
+                renderView.Size = this.panel3d.ClientSize;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,15 +66,15 @@ namespace DxfViewer
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                //AnyCAD.Exchange.DxfReader reader = new AnyCAD.Exchange.DxfReader();
-                //renderView.ClearScene();
-                //AnyCAD.Exchange.ShowShapeReaderContext context = new AnyCAD.Exchange.ShowShapeReaderContext(renderView.SceneManager);
-                //context.NextShapeId = mBeginId;
-                //if (reader.Read(dlg.FileName, context, false))
-                //{
-                //    renderView.RequestDraw();
-                //    mEndId = context.NextShapeId;
-                //}
+                AnyCAD.Exchange.DxfReader reader = new AnyCAD.Exchange.DxfReader();
+                renderView.ClearScene();
+                AnyCAD.Exchange.ShowShapeReaderContext context = new AnyCAD.Exchange.ShowShapeReaderContext(renderView.SceneManager);
+                context.NextShapeId = mBeginId;
+                if (reader.Read(dlg.FileName, context, false))
+                {
+                    renderView.RequestDraw();
+                    mEndId = context.NextShapeId;
+                }
 
             }
 
@@ -133,6 +146,12 @@ namespace DxfViewer
                 MessageBox.Show("No shape to save!");
             }
 
+        }
+
+        private void dToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            renderView.ExecuteCommand("TopView");
+            this.renderView.RequestDraw();
         }
 
     }
