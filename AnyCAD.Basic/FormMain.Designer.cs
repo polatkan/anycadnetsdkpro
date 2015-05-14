@@ -111,6 +111,7 @@
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
             this.complexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.holeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.evolvedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geometryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.curveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,7 +131,7 @@
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.evolvedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.performanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -781,6 +782,13 @@
             this.holeToolStripMenuItem.Text = "Hole";
             this.holeToolStripMenuItem.Click += new System.EventHandler(this.holeToolStripMenuItem_Click);
             // 
+            // evolvedToolStripMenuItem
+            // 
+            this.evolvedToolStripMenuItem.Name = "evolvedToolStripMenuItem";
+            this.evolvedToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.evolvedToolStripMenuItem.Text = "Evolved";
+            this.evolvedToolStripMenuItem.Click += new System.EventHandler(this.evolvedToolStripMenuItem_Click);
+            // 
             // geometryToolStripMenuItem
             // 
             this.geometryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -869,7 +877,8 @@
             this.scriptToolStripMenuItem,
             this.toolStripMenuItem13,
             this.drawCurveToolStripMenuItem,
-            this.moveToolStripMenuItem});
+            this.moveToolStripMenuItem,
+            this.performanceToolStripMenuItem});
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.testToolStripMenuItem.Text = "Test";
@@ -877,33 +886,33 @@
             // animationToolStripMenuItem
             // 
             this.animationToolStripMenuItem.Name = "animationToolStripMenuItem";
-            this.animationToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.animationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.animationToolStripMenuItem.Text = "Animation";
             this.animationToolStripMenuItem.Click += new System.EventHandler(this.animationToolStripMenuItem_Click);
             // 
             // scriptToolStripMenuItem
             // 
             this.scriptToolStripMenuItem.Name = "scriptToolStripMenuItem";
-            this.scriptToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.scriptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.scriptToolStripMenuItem.Text = "Script";
             this.scriptToolStripMenuItem.Click += new System.EventHandler(this.scriptToolStripMenuItem_Click);
             // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(132, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(149, 6);
             // 
             // drawCurveToolStripMenuItem
             // 
             this.drawCurveToolStripMenuItem.Name = "drawCurveToolStripMenuItem";
-            this.drawCurveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.drawCurveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.drawCurveToolStripMenuItem.Text = "Draw Curve";
             this.drawCurveToolStripMenuItem.Click += new System.EventHandler(this.drawCurveToolStripMenuItem_Click);
             // 
             // moveToolStripMenuItem
             // 
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.moveToolStripMenuItem.Text = "Move";
             this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
             // 
@@ -922,12 +931,12 @@
             this.panel1.Size = new System.Drawing.Size(601, 429);
             this.panel1.TabIndex = 1;
             // 
-            // evolvedToolStripMenuItem
+            // performanceToolStripMenuItem
             // 
-            this.evolvedToolStripMenuItem.Name = "evolvedToolStripMenuItem";
-            this.evolvedToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.evolvedToolStripMenuItem.Text = "Evolved";
-            this.evolvedToolStripMenuItem.Click += new System.EventHandler(this.evolvedToolStripMenuItem_Click);
+            this.performanceToolStripMenuItem.Name = "performanceToolStripMenuItem";
+            this.performanceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.performanceToolStripMenuItem.Text = "Performance";
+            this.performanceToolStripMenuItem.Click += new System.EventHandler(this.performanceToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -1053,6 +1062,7 @@
         private System.Windows.Forms.ToolStripMenuItem polygonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem holeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem evolvedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem performanceToolStripMenuItem;
 
     }
 }

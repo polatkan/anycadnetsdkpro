@@ -1713,5 +1713,25 @@ namespace AnyCAD.Basic
             renderView.ShowGeometry(shape, ++shapeId);
         }
 
+        private void performanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TopoShape box = GlobalInstance.BrepTools.MakeBox(Vector3.ZERO, Vector3.UNIT_Z, Vector3.UNIT_SCALE);
+            RenderableGeometry geom = new RenderableGeometry();
+            geom.SetGeometry(box);
+
+            for (int ii = 0; ii < 100; ++ii)
+            {
+                for (int jj = 0; jj < 200; ++jj)
+                {
+                    EntitySceneNode node = new EntitySceneNode();
+                    node.SetEntity(geom);
+                    node.SetTransform(GlobalInstance.MatrixBuilder.MakeTranslate(ii * 5 - 250, jj * 5 - 500, 0));
+                    renderView.ShowSceneNode(node);
+                }
+            }
+
+            renderView.RequestDraw();
+        }
+
     }
 }
