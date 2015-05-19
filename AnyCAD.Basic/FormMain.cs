@@ -1733,5 +1733,23 @@ namespace AnyCAD.Basic
             renderView.RequestDraw();
         }
 
+        private void glueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TopoShape box1 = GlobalInstance.BrepTools.MakeBox(Vector3.ZERO, Vector3.UNIT_Z, new Vector3(100, 100, 100));
+            TopoShape box2 = GlobalInstance.BrepTools.MakeBox(new Vector3(0, 0, -100), Vector3.UNIT_Z, new Vector3(100, 100, 100));
+
+            TopoShapeGroup group = new TopoShapeGroup();
+            group.Add(box1);
+            group.Add(box2);
+
+            TopoShape compound = GlobalInstance.BrepTools.MakeCompound(group);
+            renderView.ShowGeometry(compound, 300);
+            //RepairTools repairTool = new RepairTools();
+            //TopoShape twoBox = repairTool.GlueFaces(compund, 0.00001f, true);
+
+            //TopoDataExchangeStep step = new TopoDataExchangeStep();
+            //step.Write(twoBox, "d:/twobox.stp");
+        }
+
     }
 }
