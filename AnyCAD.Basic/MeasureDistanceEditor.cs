@@ -24,7 +24,7 @@ namespace AnyCAD.Basic
             rv.ClearHighlight();
             if (rv.Highlight(cx, cy) > 0)
             {
-                Platform.QuerySelectedElementContext context = new Platform.QuerySelectedElementContext();
+                Platform.SelectedElementQuery context = new Platform.SelectedElementQuery();
                 rv.QueryHighlight(context);
 
                 return context.GetGeometry();

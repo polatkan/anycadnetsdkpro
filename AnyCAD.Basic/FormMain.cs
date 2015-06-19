@@ -805,7 +805,7 @@ namespace AnyCAD.Basic
 
         private void querySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            QuerySelectedShapeContext context = new QuerySelectedShapeContext();
+            SelectedShapeQuery context = new SelectedShapeQuery();
             renderView.QuerySelection(context);
             TopoShape subShape = context.GetSubGeometry();
             GeomCurve curve = new GeomCurve();
