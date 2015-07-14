@@ -112,6 +112,7 @@
             this.complexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.holeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.evolvedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.glueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geometryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.curveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,6 +124,7 @@
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripSeparator();
             this.curveIntersectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queryInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.intersectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.animationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,7 +134,7 @@
             this.performanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.glueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.solidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -791,11 +793,19 @@
             this.evolvedToolStripMenuItem.Text = "Evolved";
             this.evolvedToolStripMenuItem.Click += new System.EventHandler(this.evolvedToolStripMenuItem_Click);
             // 
+            // glueToolStripMenuItem
+            // 
+            this.glueToolStripMenuItem.Name = "glueToolStripMenuItem";
+            this.glueToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.glueToolStripMenuItem.Text = "Glue";
+            this.glueToolStripMenuItem.Click += new System.EventHandler(this.glueToolStripMenuItem_Click);
+            // 
             // geometryToolStripMenuItem
             // 
             this.geometryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.curveToolStripMenuItem,
             this.surfaceToolStripMenuItem,
+            this.solidToolStripMenuItem,
             this.toolStripMenuItem4,
             this.faceTriangulateToolStripMenuItem,
             this.faceWithHolesToolStripMenuItem,
@@ -803,7 +813,8 @@
             this.planeAngleToolStripMenuItem,
             this.toolStripMenuItem15,
             this.curveIntersectionToolStripMenuItem,
-            this.queryInfoToolStripMenuItem});
+            this.queryInfoToolStripMenuItem,
+            this.intersectionToolStripMenuItem});
             this.geometryToolStripMenuItem.Name = "geometryToolStripMenuItem";
             this.geometryToolStripMenuItem.Size = new System.Drawing.Size(77, 21);
             this.geometryToolStripMenuItem.Text = "Geometry";
@@ -811,66 +822,73 @@
             // curveToolStripMenuItem
             // 
             this.curveToolStripMenuItem.Name = "curveToolStripMenuItem";
-            this.curveToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.curveToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.curveToolStripMenuItem.Text = "Curve";
             this.curveToolStripMenuItem.Click += new System.EventHandler(this.curveToolStripMenuItem_Click);
             // 
             // surfaceToolStripMenuItem
             // 
             this.surfaceToolStripMenuItem.Name = "surfaceToolStripMenuItem";
-            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.surfaceToolStripMenuItem.Text = "Surface";
             this.surfaceToolStripMenuItem.Click += new System.EventHandler(this.surfaceToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(178, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(184, 6);
             // 
             // faceTriangulateToolStripMenuItem
             // 
             this.faceTriangulateToolStripMenuItem.Name = "faceTriangulateToolStripMenuItem";
-            this.faceTriangulateToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.faceTriangulateToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.faceTriangulateToolStripMenuItem.Text = "Face Triangulate";
             this.faceTriangulateToolStripMenuItem.Click += new System.EventHandler(this.faceTriangulateToolStripMenuItem_Click);
             // 
             // faceWithHolesToolStripMenuItem
             // 
             this.faceWithHolesToolStripMenuItem.Name = "faceWithHolesToolStripMenuItem";
-            this.faceWithHolesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.faceWithHolesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.faceWithHolesToolStripMenuItem.Text = "Face with holes";
             this.faceWithHolesToolStripMenuItem.Click += new System.EventHandler(this.faceWithHolesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(178, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(184, 6);
             // 
             // planeAngleToolStripMenuItem
             // 
             this.planeAngleToolStripMenuItem.Name = "planeAngleToolStripMenuItem";
-            this.planeAngleToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.planeAngleToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.planeAngleToolStripMenuItem.Text = "Plane Angle";
             this.planeAngleToolStripMenuItem.Click += new System.EventHandler(this.planeAngleToolStripMenuItem_Click);
             // 
             // toolStripMenuItem15
             // 
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(178, 6);
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(184, 6);
             // 
             // curveIntersectionToolStripMenuItem
             // 
             this.curveIntersectionToolStripMenuItem.Name = "curveIntersectionToolStripMenuItem";
-            this.curveIntersectionToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.curveIntersectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.curveIntersectionToolStripMenuItem.Text = "Curve Intersection";
             this.curveIntersectionToolStripMenuItem.Click += new System.EventHandler(this.curveIntersectionToolStripMenuItem_Click);
             // 
             // queryInfoToolStripMenuItem
             // 
             this.queryInfoToolStripMenuItem.Name = "queryInfoToolStripMenuItem";
-            this.queryInfoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.queryInfoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.queryInfoToolStripMenuItem.Text = "Query Info";
             this.queryInfoToolStripMenuItem.Click += new System.EventHandler(this.queryInfoToolStripMenuItem_Click);
+            // 
+            // intersectionToolStripMenuItem
+            // 
+            this.intersectionToolStripMenuItem.Name = "intersectionToolStripMenuItem";
+            this.intersectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.intersectionToolStripMenuItem.Text = "IntersectionSurface";
+            this.intersectionToolStripMenuItem.Click += new System.EventHandler(this.intersectionToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
@@ -888,40 +906,40 @@
             // animationToolStripMenuItem
             // 
             this.animationToolStripMenuItem.Name = "animationToolStripMenuItem";
-            this.animationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.animationToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.animationToolStripMenuItem.Text = "Animation";
             this.animationToolStripMenuItem.Click += new System.EventHandler(this.animationToolStripMenuItem_Click);
             // 
             // scriptToolStripMenuItem
             // 
             this.scriptToolStripMenuItem.Name = "scriptToolStripMenuItem";
-            this.scriptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.scriptToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.scriptToolStripMenuItem.Text = "Script";
             this.scriptToolStripMenuItem.Click += new System.EventHandler(this.scriptToolStripMenuItem_Click);
             // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(147, 6);
             // 
             // drawCurveToolStripMenuItem
             // 
             this.drawCurveToolStripMenuItem.Name = "drawCurveToolStripMenuItem";
-            this.drawCurveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.drawCurveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.drawCurveToolStripMenuItem.Text = "Draw Curve";
             this.drawCurveToolStripMenuItem.Click += new System.EventHandler(this.drawCurveToolStripMenuItem_Click);
             // 
             // moveToolStripMenuItem
             // 
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.moveToolStripMenuItem.Text = "Move";
             this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
             // 
             // performanceToolStripMenuItem
             // 
             this.performanceToolStripMenuItem.Name = "performanceToolStripMenuItem";
-            this.performanceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.performanceToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.performanceToolStripMenuItem.Text = "Performance";
             this.performanceToolStripMenuItem.Click += new System.EventHandler(this.performanceToolStripMenuItem_Click);
             // 
@@ -940,12 +958,12 @@
             this.panel1.Size = new System.Drawing.Size(601, 428);
             this.panel1.TabIndex = 1;
             // 
-            // glueToolStripMenuItem
+            // solidToolStripMenuItem
             // 
-            this.glueToolStripMenuItem.Name = "glueToolStripMenuItem";
-            this.glueToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.glueToolStripMenuItem.Text = "Glue";
-            this.glueToolStripMenuItem.Click += new System.EventHandler(this.glueToolStripMenuItem_Click);
+            this.solidToolStripMenuItem.Name = "solidToolStripMenuItem";
+            this.solidToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.solidToolStripMenuItem.Text = "Solid";
+            this.solidToolStripMenuItem.Click += new System.EventHandler(this.solidToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -1073,6 +1091,8 @@
         private System.Windows.Forms.ToolStripMenuItem evolvedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem performanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem glueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem intersectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem solidToolStripMenuItem;
 
     }
 }

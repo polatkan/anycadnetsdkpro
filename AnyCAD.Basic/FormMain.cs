@@ -1751,5 +1751,104 @@ namespace AnyCAD.Basic
             //step.Write(twoBox, "d:/twobox.stp");
         }
 
+
+        double radius;
+        double decrease;
+        double cunterarray;
+        public void drawSpiral(Vector3 startPoint, List<TopoShape> shapes)
+        {
+            radius = Math.Sqrt((startPoint.X * startPoint.X) + (startPoint.Y * startPoint.Y));
+            double b = radius;
+
+            double bx = 0;
+            double by = 0;
+            decrease = 0.01;
+            double countersizeX = Math.Round(radius / decrease);
+            cunterarray = 0; //countersizeX;
+            int i = 1;
+            while (b > 0)
+            {
+                b = b - (decrease);
+
+                bx = Math.Cos(3 * i * Math.PI / 180) * b;
+                double bxsqr = Math.Pow(bx, 2);
+                double bsqr = Math.Pow(b, 2);
+
+                by = Math.Sqrt(bsqr - bxsqr);
+
+                // Set y value to negative if degrees is below y = 0
+                if (i * 3 > 180 && i * 2 <= 360)
+                    by = -1 * by;
+
+                // Trying to get Z index of Shape Point by using spiral coordinate...
+                Vector3 to = new Vector3((float)bx, (float)by, (float)1000.0);
+                Ray r = new Ray(to, new Vector3(0, 0, -1000));
+
+                for (int ii = 0; ii < shapes.Count; ++ii)
+                {
+                    IntersectionLineSurface intersector = new IntersectionLineSurface();
+                    intersector.SetSurface(shapes[ii]);
+                    if (intersector.Perform(r) && intersector.GetPointCount() > 0)
+                    {
+                        Vector3 intersect = intersector.GetPoint(1);
+                        to.Z = intersect.Z;
+
+                        break;
+                    }
+                }
+
+                cunterarray = cunterarray + 1;
+                TopoShape line = GlobalInstance.BrepTools.MakeLine(startPoint, to);
+                startPoint = to;
+                renderView.ShowGeometry(line, 103);
+                i = i * 3 > 356 ? i = 0 : i + 1;
+            }
+        }
+        private void intersectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<TopoShape> shapeList = new List<TopoShape>();
+            MultiShapeQuery query = new MultiShapeQuery();
+            renderView.QuerySelection(query);
+            int nCount = query.GetCount();
+            for (int ii = 0; ii < nCount; ++ii)
+            {
+                SelectedShapeQuery shapeQuery = query.GetSubContext(ii);
+                shapeList.Add(shapeQuery.GetSubGeometry());
+            }
+
+            drawSpiral(Vector3.ZERO, shapeList);
+        }
+
+        private void solidToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "STL (*.stl)|*.stl|IGES (*.igs;*.iges)|*.igs;*.iges|STEP (*.stp;*.step)|*.stp;*.step|BREP (*.brep)|*.brep|All Files(*.*)|*.*";
+
+            if (DialogResult.OK != dlg.ShowDialog())
+                return;
+
+
+            TopoShape shape = GlobalInstance.BrepTools.LoadFile(dlg.FileName);
+            renderView.ShowGeometry(shape, 100);
+
+            //TopoExplor explor = new TopoExplor();
+            //TopoShapeGroup solids = explor.ExplorSolids(shape);
+            //float vol = 0;
+            //for(int ii=0; ii<solids.Size(); ++ii)
+            //{
+            //    TopoShapeProperty property = new TopoShapeProperty();
+            //    property.SetShape(solids.GetAt(ii));
+            //    vol += property.SolidVolume();
+            //}
+            TopoExplor explor = new TopoExplor();
+            TopoShapeGroup faces = explor.ExplorFaces(shape);
+            TopoShape solid = GlobalInstance.BrepTools.MakeSolid(faces);
+            TopoShapeProperty property = new TopoShapeProperty();
+            property.SetShape(solid);
+            float vol = property.SolidVolume();
+
+            MessageBox.Show(String.Format("{0}", vol));
+        }
+
     }
 }
