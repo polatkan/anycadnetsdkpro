@@ -10,3 +10,5 @@ xcopy ..\bin\release\AnyExchange*.dll .\bin\release\ /y
 xcopy ..\bin\release\AnyPlatformAPI.dll .\bin\release\ /y
 xcopy ..\bin\release\AnyCAD.*.dll .\bin\release\ /y
 xcopy ..\bin\release\AppProConfig.xml .\bin\release\ /y
+
+xcopy .\bin\release\*.* .\bin\debug\ /y

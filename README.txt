@@ -1,12 +1,12 @@
-﻿anycad.net sdk pro for .Net 4.0
+﻿anycad.net sdk pro for .Net
 ===============
 
-v2014UR1
+v2016.B
 
 
-API Document
+How to Buy
 ---------------
-http://www.anycad.net/help/AGP2014/
+http://www.anycad.net/3d-graphics-component-for-net-framework.html
 
 
 FAQ:
@@ -24,6 +24,4 @@ A:  In this case you need to purchase 4 licenses (1 per product).
 Q: Do we need to purchase technical support and maintenance or our subscription already includes free support?
 A: All our products come with one-year subscription, which includes unlimited technical support (using our e-mail) and free updates for the purchased product.
 
-How to Buy
----------------
-http://www.anycad.net/3d-graphics-component-for-net-framework.html
+

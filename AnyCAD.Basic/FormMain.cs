@@ -38,7 +38,7 @@ namespace AnyCAD.Basic
             GlobalInstance.EventListener.OnSelectElementEvent += OnSelectElement;
         }
 
-        private void OnSelectElement(HashSet<int> ids)
+        private void OnSelectElement(HashSet<ElementId> ids)
         {
 
         }
@@ -94,7 +94,7 @@ namespace AnyCAD.Basic
 
             Texture texture = new Texture();
             texture.SetName("mytexture3");
-            texture.SetFileName("#test\\land_ocean_ice_2048.jpg");
+            texture.SetFilePath(new AnyCAD.Platform.Path("#test\\land_ocean_ice_2048.jpg"));
 
             FaceStyle style = new FaceStyle();
             style.SetTexture(0, texture);
@@ -125,7 +125,7 @@ namespace AnyCAD.Basic
             
             Texture texture = new Texture();
             texture.SetName("mytexture2");
-            texture.SetFileName("#test\\houzi.jpg");
+            texture.SetFilePath(new AnyCAD.Platform.Path("#test\\houzi.jpg"));
             style.SetTexture(0, texture);
 
             sceneNode.SetFaceStyle(style);
@@ -147,7 +147,7 @@ namespace AnyCAD.Basic
 
             Texture texture = new Texture();
             texture.SetName("mytexture");
-            texture.SetFileName("#Terrain\\BeachStones.jpg");
+            texture.SetFilePath(new AnyCAD.Platform.Path("#Terrain\\BeachStones.jpg"));
 
             FaceStyle style = new FaceStyle();
             style.SetTexture(0, texture);
@@ -178,7 +178,7 @@ namespace AnyCAD.Basic
             renderView.ShowGeometry(extrude, ++shapeId);
 
             // Check find....
-            SceneNode findNode = renderView.SceneManager.FindNode(shapeId);
+            SceneNode findNode = renderView.SceneManager.FindNode(new ElementId(shapeId));
             renderView.SceneManager.SelectNode(findNode);
         }
 
@@ -217,8 +217,8 @@ namespace AnyCAD.Basic
             if (DialogResult.OK != dlg.ShowDialog())
                 return;
 
-            
-            TopoShape shape = GlobalInstance.BrepTools.LoadFile(dlg.FileName);
+
+            TopoShape shape = GlobalInstance.BrepTools.LoadFile(new AnyCAD.Platform.Path(dlg.FileName));
             renderView.RenderTimer.Enabled = false;
             if (shape != null)
             {
@@ -1004,7 +1004,7 @@ namespace AnyCAD.Basic
             SceneNode node = renderView.ShowGeometry(rect, ++shapeId);
             Texture texture = new Texture();
             texture.SetName("mytexture");
-            texture.SetFileName("f:\\dimian.png");
+            texture.SetFilePath(new AnyCAD.Platform.Path("f:\\dimian.png"));
 
             FaceStyle style = new FaceStyle();
             style.SetTexture(0, texture);
@@ -1130,7 +1130,6 @@ namespace AnyCAD.Basic
                 xwh.SetArrowText((int)EnumAxesType.Axes_Z, "h");
                 CoordinateWidget coordWidget = new CoordinateWidget();
                 coordWidget.SetNode(xwh);
-                coordWidget.SetId(100);
                 coordWidget.SetWidgetPosition((int)EnumWidgetPosition.WP_BottomLeft);
                 renderView.Renderer.AddWidgetNode(coordWidget);
             }
@@ -1139,7 +1138,6 @@ namespace AnyCAD.Basic
                 yz.ShowArrow((int)EnumAxesType.Axes_X, false);
                 CoordinateWidget coordWidget = new CoordinateWidget();
                 coordWidget.SetNode(yz);
-                coordWidget.SetId(101);
                 coordWidget.SetWidgetPosition((int)EnumWidgetPosition.WP_BottomRight);
                 renderView.Renderer.AddWidgetNode(coordWidget);
             }
@@ -1300,7 +1298,7 @@ namespace AnyCAD.Basic
                 if (openDlg.ShowDialog() == DialogResult.OK)
                 {
                     SceneReader reader = new SceneReader();
-                    GroupSceneNode node = reader.LoadFile(openDlg.FileName);
+                    GroupSceneNode node = reader.LoadFile(new AnyCAD.Platform.Path(openDlg.FileName));
                     if (node != null)
                     {
                         node.SetName(openDlg.SafeFileName);
@@ -1365,10 +1363,17 @@ namespace AnyCAD.Basic
             
             TopoShape spline = GlobalInstance.BrepTools.MakeSpline(ptlist);
             TopoShape rect = GlobalInstance.BrepTools.MakeRectangle(20, 50, 5, Coordinate3.UNIT_XYZ);
-
-            TopoShape sweepShape = GlobalInstance.BrepTools.Sweep(rect, spline);
+            TopoShape line = GlobalInstance.BrepTools.MakeLine(Vector3.ZERO, new Vector3(100, 100, 0));
+            TopoShape sweepShape = GlobalInstance.BrepTools.Sweep(line, spline);
 
             renderView.ShowGeometry(sweepShape, ++shapeId);
+            renderView.RequestDraw();
+
+            TopoShape path1 = GlobalInstance.BrepTools.MakeLine(new Vector3(0, 0, 0), new Vector3(0, 0, 100));
+            TopoShape ts1 = GlobalInstance.BrepTools.MakeLine(new Vector3(0, 0, 0), new Vector3(100, 0, 100));
+            TopoShape loft1 = GlobalInstance.BrepTools.Sweep(ts1, path1);
+
+            renderView.ShowGeometry(loft1, ++shapeId);
             renderView.RequestDraw();
         }
 
@@ -1493,7 +1498,7 @@ namespace AnyCAD.Basic
                 return;
 
             ImageNode node = new ImageNode();
-            node.SetImage(dlg.FileName);
+            node.SetImage(new AnyCAD.Platform.Path(dlg.FileName));
             node.SetWidth(100);
             node.SetHeight(200);
 
@@ -1828,7 +1833,7 @@ namespace AnyCAD.Basic
                 return;
 
 
-            TopoShape shape = GlobalInstance.BrepTools.LoadFile(dlg.FileName);
+            TopoShape shape = GlobalInstance.BrepTools.LoadFile(new AnyCAD.Platform.Path(dlg.FileName));
             renderView.ShowGeometry(shape, 100);
 
             //TopoExplor explor = new TopoExplor();
