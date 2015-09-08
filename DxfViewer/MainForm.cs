@@ -13,8 +13,8 @@ namespace DxfViewer
     public partial class MainForm : Form
     {
         private AnyCAD.Presentation.RenderWindow3d renderView = null;
-        private int mBeginId = 0;
-        private int mEndId = 0;
+        private ElementId mBeginId = new ElementId();
+        private ElementId mEndId = new ElementId();
 
         public MainForm()
         {
@@ -47,7 +47,7 @@ namespace DxfViewer
 
             // Set the fixed Top View
             renderer.SetStandardView((int)EnumStandardView.SV_Top);
-            renderer.SetViewType((int)EnumStandardView.SV_Top);
+            renderer.SetViewType(EnumStandardView.SV_Top);
 
             this.renderView.RequestDraw();
 
@@ -115,7 +115,7 @@ namespace DxfViewer
 
 
             TopoShapeGroup group = new TopoShapeGroup();
-            for (int ii = mBeginId; ii < mEndId; ++ii)
+            for (ElementId ii = mBeginId; ii < mEndId; ++ii)
             {
                 SceneNode node = sceneManager.FindNode(ii);
                 if (node != null)
@@ -139,7 +139,7 @@ namespace DxfViewer
                     return;
                 }
                 TopoDataExchangeIges igsWriter = new TopoDataExchangeIges();
-                igsWriter.Write(group, dlg.FileName);
+                igsWriter.Write(group, new AnyCAD.Platform.Path(dlg.FileName));
             }
             else
             {

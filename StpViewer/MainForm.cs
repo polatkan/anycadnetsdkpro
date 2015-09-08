@@ -26,7 +26,7 @@ namespace StpViewer
             GlobalInstance.EventListener.OnSelectElementEvent += OnSelectionChanged;
         }
 
-        void OnSelectionChanged(HashSet<int> ids)
+        void OnSelectionChanged(HashSet<ElementId> ids)
         {
 
         }

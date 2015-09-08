@@ -535,7 +535,7 @@ namespace AnyCAD.Basic
         {
             TopoShape circle = GlobalInstance.BrepTools.MakeCircle(Vector3.ZERO, 100, Vector3.UNIT_Z);
             TopoShape face = GlobalInstance.BrepTools.MakeFace(circle);
-            if (face.GetShapeType() == (int)EnShapeType.Topo_FACE)
+            if (face.GetShapeType() == EnumTopoShapeType.Topo_FACE)
             {
                 MessageBox.Show("This is a face!");
             }
