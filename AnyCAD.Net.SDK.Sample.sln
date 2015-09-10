@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StpViewer", "StpViewer\StpV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxfViewer", "DxfViewer\DxfViewer.csproj", "{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyCAD.WPF", "AnyCAD.WPF\AnyCAD.WPF.csproj", "{D455BA05-04B3-44CC-BA94-4F88C1257F55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -39,6 +41,12 @@ Global
 		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Release|x64.Build.0 = Release|x64
 		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Release|x86.ActiveCfg = Release|x86
 		{2EE728F9-DF2C-438B-A9A6-ADEF0B411CC1}.Release|x86.Build.0 = Release|x86
+		{D455BA05-04B3-44CC-BA94-4F88C1257F55}.Debug|x64.ActiveCfg = Debug|x86
+		{D455BA05-04B3-44CC-BA94-4F88C1257F55}.Debug|x86.ActiveCfg = Debug|x86
+		{D455BA05-04B3-44CC-BA94-4F88C1257F55}.Debug|x86.Build.0 = Debug|x86
+		{D455BA05-04B3-44CC-BA94-4F88C1257F55}.Release|x64.ActiveCfg = Release|x86
+		{D455BA05-04B3-44CC-BA94-4F88C1257F55}.Release|x86.ActiveCfg = Release|x86
+		{D455BA05-04B3-44CC-BA94-4F88C1257F55}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
