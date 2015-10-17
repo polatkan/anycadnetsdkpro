@@ -55,7 +55,7 @@ namespace AnyCAD.Basic
                 TopoShape spline = GlobalInstance.BrepTools.MakeSpline(m_Points);
                 if (spline != null)
                 {
-                    SceneNode node = GlobalInstance.TopoShapeConvert.ToEdgeNode(spline, 0.1f);
+                    SceneNode node = GlobalInstance.TopoShapeConvert.ToEdgeNode(spline, 0.0f);
 
                     this.RemoveAllTempNodes();
                     this.ShowTempNode(node);

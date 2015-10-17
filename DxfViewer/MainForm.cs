@@ -38,7 +38,7 @@ namespace DxfViewer
             Renderer renderer = renderView.Renderer;
 
             // Customize the Axis
-            CoordinateWidget coodinateNode = new CoordinateWidget();
+            ScreenWidget coodinateNode = new ScreenWidget();
             AxesWidget axesNode = new AxesWidget();
             axesNode.SetArrowText((int)EnumAxesType.Axes_Z, "");
             coodinateNode.SetNode(axesNode);
@@ -46,7 +46,7 @@ namespace DxfViewer
             renderer.SetCoordinateWidget(coodinateNode);
 
             // Set the fixed Top View
-            renderer.SetStandardView((int)EnumStandardView.SV_Top);
+            renderer.SetStandardView(EnumStandardView.SV_Top);
             renderer.SetViewType(EnumStandardView.SV_Top);
 
             this.renderView.RequestDraw();

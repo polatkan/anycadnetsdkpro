@@ -816,8 +816,8 @@ namespace AnyCAD.Basic
                 //...
             }
 
-            int id = context.GetNodeId();
-            MessageBox.Show(id.ToString());
+            ElementId id = context.GetNodeId();
+            MessageBox.Show(id.AsInt().ToString());
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1128,7 +1128,7 @@ namespace AnyCAD.Basic
                 xwh.EnableLeftHandCS();
                 xwh.SetArrowText((int)EnumAxesType.Axes_Y, "w");
                 xwh.SetArrowText((int)EnumAxesType.Axes_Z, "h");
-                CoordinateWidget coordWidget = new CoordinateWidget();
+                ScreenWidget coordWidget = new ScreenWidget();
                 coordWidget.SetNode(xwh);
                 coordWidget.SetWidgetPosition((int)EnumWidgetPosition.WP_BottomLeft);
                 renderView.Renderer.AddWidgetNode(coordWidget);
@@ -1136,7 +1136,7 @@ namespace AnyCAD.Basic
             {
                 AxesWidget yz = new AxesWidget();
                 yz.ShowArrow((int)EnumAxesType.Axes_X, false);
-                CoordinateWidget coordWidget = new CoordinateWidget();
+                ScreenWidget coordWidget = new ScreenWidget();
                 coordWidget.SetNode(yz);
                 coordWidget.SetWidgetPosition((int)EnumWidgetPosition.WP_BottomRight);
                 renderView.Renderer.AddWidgetNode(coordWidget);
@@ -1190,13 +1190,13 @@ namespace AnyCAD.Basic
 
         private void topToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renderView.Renderer.SetStandardView((int)EnumStandardView.SV_Top);
+            renderView.Renderer.SetStandardView( EnumStandardView.SV_Top);
             renderView.RequestDraw();
         }
 
         private void frontToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            renderView.Renderer.SetStandardView((int)EnumStandardView.SV_Front);
+            renderView.Renderer.SetStandardView( EnumStandardView.SV_Front);
             renderView.RequestDraw();
         }
 
