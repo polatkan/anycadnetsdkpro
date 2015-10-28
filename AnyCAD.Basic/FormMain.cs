@@ -38,7 +38,7 @@ namespace AnyCAD.Basic
             GlobalInstance.EventListener.OnSelectElementEvent += OnSelectElement;
         }
 
-        private void OnSelectElement(HashSet<ElementId> ids)
+        private void OnSelectElement(SelectionChangeArgs args)
         {
 
         }
