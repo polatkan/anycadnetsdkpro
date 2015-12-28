@@ -40,9 +40,9 @@ namespace DxfViewer
             // Customize the Axis
             ScreenWidget coodinateNode = new ScreenWidget();
             AxesWidget axesNode = new AxesWidget();
-            axesNode.SetArrowText((int)EnumAxesType.Axes_Z, "");
+            axesNode.SetArrowText((int)EnumAxesDirection.Axes_Z, "");
             coodinateNode.SetNode(axesNode);
-            coodinateNode.SetWidgetPosition(0);     
+            coodinateNode.SetWidgetPosition(2);     
             renderer.SetCoordinateWidget(coodinateNode);
 
             // Set the fixed Top View

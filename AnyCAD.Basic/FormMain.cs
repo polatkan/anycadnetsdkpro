@@ -1126,8 +1126,8 @@ namespace AnyCAD.Basic
             {
                 AxesWidget xwh = new AxesWidget();
                 xwh.EnableLeftHandCS();
-                xwh.SetArrowText((int)EnumAxesType.Axes_Y, "w");
-                xwh.SetArrowText((int)EnumAxesType.Axes_Z, "h");
+                xwh.SetArrowText((int)EnumAxesDirection.Axes_Y, "w");
+                xwh.SetArrowText((int)EnumAxesDirection.Axes_Z, "h");
                 ScreenWidget coordWidget = new ScreenWidget();
                 coordWidget.SetNode(xwh);
                 coordWidget.SetWidgetPosition((int)EnumWidgetPosition.WP_BottomLeft);
@@ -1135,7 +1135,7 @@ namespace AnyCAD.Basic
             }
             {
                 AxesWidget yz = new AxesWidget();
-                yz.ShowArrow((int)EnumAxesType.Axes_X, false);
+                yz.ShowArrow((int)EnumAxesDirection.Axes_X, false);
                 ScreenWidget coordWidget = new ScreenWidget();
                 coordWidget.SetNode(yz);
                 coordWidget.SetWidgetPosition((int)EnumWidgetPosition.WP_BottomRight);
@@ -1297,7 +1297,7 @@ namespace AnyCAD.Basic
             openDlg.Filter = "STL (*.stl)|*.stl|3ds (*.3ds)|*.3ds|obj (*.obj)|*.obj|Skp (*.skp)|*.skp";
                 if (openDlg.ShowDialog() == DialogResult.OK)
                 {
-                    SceneReader reader = new SceneReader();
+                    ModelReader reader = new ModelReader();
                     GroupSceneNode node = reader.LoadFile(new AnyCAD.Platform.Path(openDlg.FileName));
                     if (node != null)
                     {
@@ -1853,6 +1853,14 @@ namespace AnyCAD.Basic
             float vol = property.SolidVolume();
 
             MessageBox.Show(String.Format("{0}", vol));
+        }
+
+        private void axesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AxesWidget axes = new AxesWidget();
+            axes.SetFixedSize(true);
+            axes.SetPickable(false);
+            renderView.ShowSceneNode(axes);
         }
 
     }
