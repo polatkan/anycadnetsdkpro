@@ -222,36 +222,10 @@ namespace AnyCAD.Basic
             renderView.RenderTimer.Enabled = false;
             if (shape != null)
             {
-                TopoShapeGroup group = new TopoShapeGroup();
-                group.Add(shape);
-                //GlobalInstance.BrepTools.SaveFile(group, "d:\\anycad.brep");
-                //PhongMaterial material = new PhongMaterial();
-                //material.SetAmbient(new ColorValue(0.24725f, 0.2245f, 0.0645f));
-                //material.SetDiffuse(new ColorValue(0.84615f, 0.8143f, 0.2903f));
-                //material.SetSpecular(new ColorValue(0.797357f, 0.723991f, 0.208006f));
-                //material.SetShininess(83.2f);
-                //FaceStyle faceStyle = new FaceStyle();
-                //faceStyle.SetMaterial(material);
-                //SceneManager sceneMgr = renderView.SceneManager;
-                //TopoShapeGroup subGroup = GlobalInstance.TopoExplor.ExplorSubShapes(shape);
-                //int nSize = subGroup.Size();
-                //for (int ii = 0; ii < nSize; ++ii)
-                //{
-                //    SceneNode node = GlobalInstance.TopoShapeConvert.ToEntityNode(subGroup.GetTopoShape(ii), 10f);
-                //    node.SetId(++shapeId);
-                //    node.SetFaceStyle(faceStyle);
-
-                //    sceneMgr.AddNode(node);
-                //}
-                SceneManager sceneMgr = renderView.SceneManager;
-                SceneNode rootNode = GlobalInstance.TopoShapeConvert.ToSceneNode(shape, 0.1f);
-                if (rootNode != null)
-                {
-                    sceneMgr.AddNode(rootNode);
-                }
+                renderView.ShowGeometry(shape, new ElementId(100));
             }
             renderView.RenderTimer.Enabled = true;
-        
+
 
             renderView.FitAll();
             renderView.RequestDraw(EnumRenderHint.RH_LoadScene);
