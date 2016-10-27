@@ -1,5 +1,6 @@
 AnyCAD.Basic/obj/
-bin/
+bin/Debug/
+bin/Release
 AnyCAD.Net.SDK.Sample.suo
 AnyCAD.WPF/obj/
 DxfViewer/obj/
