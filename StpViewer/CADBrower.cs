@@ -10,7 +10,7 @@ namespace StpViewer
 {
     class CADBrower : AnyCAD.Platform.TopoShapeReaderContext
     {
-        private StreamWriter fileSys = null;
+
         private System.Windows.Forms.TreeView treeView = null;
         private AnyCAD.Presentation.RenderWindow3d renderView = null;
         private Stack<System.Windows.Forms.TreeNode> nodeStack = new Stack<System.Windows.Forms.TreeNode>();
@@ -25,8 +25,6 @@ namespace StpViewer
 
             System.Windows.Forms.TreeNode node = treeView.Nodes.Add("AnyCAD.net");
             nodeStack.Push(node);
-
-            fileSys = new StreamWriter("d:/xxx.txt");
         }
 
         ~CADBrower()
@@ -47,9 +45,6 @@ namespace StpViewer
             }
 
             faceStyle = fs;
-
-            fileSys.WriteLine(String.Format("{0} {1} {2}", clr.R, clr.G, clr.B));
-            fileSys.Flush();
         }
         
 

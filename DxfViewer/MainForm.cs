@@ -42,7 +42,7 @@ namespace DxfViewer
             AxesWidget axesNode = new AxesWidget();
             axesNode.SetArrowText((int)EnumAxesDirection.Axes_Z, "");
             coodinateNode.SetNode(axesNode);
-            coodinateNode.SetWidgetPosition(0);     
+            coodinateNode.SetWidgetPosition(2);     
             renderer.SetCoordinateWidget(coodinateNode);
 
             // Set the fixed Top View
