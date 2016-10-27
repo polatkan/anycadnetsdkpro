@@ -36,6 +36,8 @@ namespace AnyCAD.Basic
 
             GlobalInstance.EventListener.OnChangeCursorEvent += OnChangeCursor;
             GlobalInstance.EventListener.OnSelectElementEvent += OnSelectElement;
+
+
         }
 
         private void OnSelectElement(SelectionChangeArgs args)
@@ -74,7 +76,7 @@ namespace AnyCAD.Basic
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            
+
         }
         private void FormMain_SizeChanged(object sender, EventArgs e)
         {
@@ -299,14 +301,31 @@ namespace AnyCAD.Basic
 
         private void textToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            String fontName = "simhei.ttf";
+            AnyCAD.Platform.Font font = GlobalInstance.FontManager.FindFont(fontName);
+            if (font != null)
             {
-                GlobalInstance.FontManager.SetDefaultFont("FangSong (TrueType)");
+                font.SetCharHeight(24);
+                font.SetCharWdith(24);
+                font.Update();
+            }
+
+            {
+                Vector3 position = new Vector3(200, 200, 200);
+
+
                 TextNode text = new TextNode();
-                text.SetPosition(new Vector3(200, 200, 200));
+                text.SetFontName(fontName);
+                text.SetPosition(position);                
                 text.SetText("AnyCAD .Net SDK Pro 专业版");
                 text.SetTextColor(new ColorValue(1, 0, 0, 1));
-
+                text.SetOffset(new Vector2(-24 * 7, 0));
                 renderView.SceneManager.AddNode(text);
+
+                PointNode pn = new PointNode();
+                pn.SetPoint(position);
+                renderView.ShowSceneNode(pn);
             }
             {
                 TextNode text = new TextNode();
@@ -387,15 +406,33 @@ namespace AnyCAD.Basic
                 if (!reader.Read(dlg.FileName, context, false))
                     return;
 
+                //TopoShape test = context.ShapeGroup.GetTopoShape(0);
+                //renderView.ShowGeometry(test, 1);
+                //Matrix4 mm = GlobalInstance.MatrixBuilder.MakeRotation(90, Vector3.UNIT_Z);
+                //TopoShape test1 = GlobalInstance.BrepTools.Transform(test, mm);
+                //renderView.ShowGeometry(test1, 5);
                 //LoopsBuilder builder = new LoopsBuilder();
-                //builder.Initialize(context.ShapeGroup);
-                //TopoShapeGroup faces =  builder.BuildFacesWithHoles();
-                TopoShapeGroup faces = context.ShapeGroup;
+                //builder.InitializeWithClosedWires(context.ShapeGroup);
+                //TopoShapeGroup faces = builder.BuildFacesWithHoles();
+                //TopoShapeGroup faces = context.ShapeGroup;
 
-                for (int ii = 0; ii < faces.Size(); ++ii)
-                {
-                    renderView.ShowGeometry(faces.GetTopoShape(ii), ++shapeId);
-                }
+                //for (int ii = 0; ii < faces.Size(); ++ii)
+                //{
+                //    renderView.ShowGeometry(faces.GetTopoShape(ii), ++shapeId);
+                //}
+
+                TopoShape test = GlobalInstance.BrepTools.MakeWire(context.ShapeGroup);
+                renderView.ShowWorkingGrid(true);
+                TopoShape test1 = GlobalInstance.BrepTools.Rotation(test, Vector3.UNIT_Z, 90);
+                List<Vector3> pts1 = new List<Vector3>();
+                pts1.Add(new Vector3(0, 0, 0));
+                pts1.Add(new Vector3(0, 0, 100));
+                pts1.Add(new Vector3(100, 0, 200));
+                TopoShape line = GlobalInstance.BrepTools.MakePolyline(pts1);
+                test1 = GlobalInstance.BrepTools.MakePipe(test1, line, 1);
+                renderView.ShowGeometry(test1, 5);
+                renderView.ShowGeometry(test, 5);
+                renderView.RequestDraw();
             }
 
             renderView.FitAll();
@@ -424,12 +461,12 @@ namespace AnyCAD.Basic
                 GeomCurve curve = new GeomCurve();
                 curve.Initialize(arc);
 
-                float paramStart = curve.FirstParameter();
-                float paramEnd = curve.LastParameter();
+                double paramStart = curve.FirstParameter();
+                double paramEnd = curve.LastParameter();
 
-                float step = (paramEnd - paramStart) * 0.1f;
+                double step = (paramEnd - paramStart) * 0.1f;
 
-                for (float uu = paramStart; uu <= paramEnd; uu += step)
+                for (double uu = paramStart; uu <= paramEnd; uu += step)
                 {
                     Vector3 dir = curve.DN(uu, 1);
                     Vector3 pos = curve.Value(uu);
@@ -455,7 +492,7 @@ namespace AnyCAD.Basic
             TopoShapeProperty property = new TopoShapeProperty();
             property.SetShape(arc);
 
-            float len = property.EdgeLength();
+            double len = property.EdgeLength();
 
             TextNode text = new TextNode();
             text.SetText(String.Format("Arc Length: {0}", len));
@@ -492,15 +529,15 @@ namespace AnyCAD.Basic
 
             GeomSurface surface = new GeomSurface();
             surface.Initialize(face);
-            float ufirst = surface.FirstUParameter();
-            float uLarst = surface.LastUParameter();
-            float vfirst = surface.FirstVParameter();
-            float vLast = surface.LastVParameter();
+            double ufirst = surface.FirstUParameter();
+            double uLarst = surface.LastUParameter();
+            double vfirst = surface.FirstVParameter();
+            double vLast = surface.LastVParameter();
 
-            float ustep = (uLarst - ufirst) * 0.1f;
-            float vstep = (vLast - vfirst) * 0.1f;
-            for(float ii=ufirst; ii<=uLarst; ii+= ustep)
-                for (float jj = vfirst; jj <= vLast; jj += vstep)
+            double ustep = (uLarst - ufirst) * 0.1f;
+            double vstep = (vLast - vfirst) * 0.1f;
+            for(double ii =ufirst; ii<=uLarst; ii+= ustep)
+                for (double jj = vfirst; jj <= vLast; jj += vstep)
                 {
                     var data = surface.D1(ii, jj);
 
@@ -520,7 +557,7 @@ namespace AnyCAD.Basic
             TopoShapeProperty property = new TopoShapeProperty();
             property.SetShape(face);
 
-            float area = property.SurfaceArea();
+            double area = property.SurfaceArea();
 
             TextNode text = new TextNode();
             text.SetText(String.Format("Surface Area: {0}", area));
@@ -838,10 +875,11 @@ namespace AnyCAD.Basic
 
             
         }
-
+        DrawLineEditor drawLine;
         private void lineEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DrawLineEditor drawLine = new DrawLineEditor();
+            if(drawLine == null)
+                drawLine = new DrawLineEditor();
             renderView.ActiveEditor(drawLine);
         }
 
@@ -884,7 +922,7 @@ namespace AnyCAD.Basic
             renderView.ShowSceneNode(line2);
 
             // angle
-            float angle = normal.AngleBetween(planeDir);
+            double angle = normal.AngleBetween(planeDir);
 
             Vector3 dir = normal.CrossProduct(planeDir);
             dir.Normalize();
@@ -1126,8 +1164,8 @@ namespace AnyCAD.Basic
             {
                 AxesWidget xwh = new AxesWidget();
                 xwh.EnableLeftHandCS();
-                xwh.SetArrowText((int)EnumAxesType.Axes_Y, "w");
-                xwh.SetArrowText((int)EnumAxesType.Axes_Z, "h");
+                xwh.SetArrowText((int)EnumAxesDirection.Axes_Y, "w");
+                xwh.SetArrowText((int)EnumAxesDirection.Axes_Z, "h");
                 ScreenWidget coordWidget = new ScreenWidget();
                 coordWidget.SetNode(xwh);
                 coordWidget.SetWidgetPosition((int)EnumWidgetPosition.WP_BottomLeft);
@@ -1135,7 +1173,7 @@ namespace AnyCAD.Basic
             }
             {
                 AxesWidget yz = new AxesWidget();
-                yz.ShowArrow((int)EnumAxesType.Axes_X, false);
+                yz.ShowArrow((int)EnumAxesDirection.Axes_X, false);
                 ScreenWidget coordWidget = new ScreenWidget();
                 coordWidget.SetNode(yz);
                 coordWidget.SetWidgetPosition((int)EnumWidgetPosition.WP_BottomRight);
@@ -1210,6 +1248,13 @@ namespace AnyCAD.Basic
             node.SetPickable(false);
 
             renderView.RequestDraw();
+
+            TopoDataExchangeStl expoter = new TopoDataExchangeStl();
+            if (!expoter.Write(sphere, new Platform.Path("d:/mystl.stl")))
+            {
+
+                MessageBox.Show("Error!");
+            }
         }
 
         private void pointToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1251,9 +1296,9 @@ namespace AnyCAD.Basic
                     LineStyle ls2 = new LineStyle();
                     ls2.SetColor(ColorValue.GREEN);
 
-                    float start = curve.FirstParameter();
-                    float end = curve.LastParameter();
-                    for (float ii = start; ii <= end; ii += 0.1f)
+                    double start = curve.FirstParameter();
+                    double end = curve.LastParameter();
+                    for (double ii = start; ii <= end; ii += 0.1f)
                     {
                         List<Vector3> rt = curve.D1(ii);
                         LineNode ln = new LineNode();
@@ -1297,7 +1342,7 @@ namespace AnyCAD.Basic
             openDlg.Filter = "STL (*.stl)|*.stl|3ds (*.3ds)|*.3ds|obj (*.obj)|*.obj|Skp (*.skp)|*.skp";
                 if (openDlg.ShowDialog() == DialogResult.OK)
                 {
-                    SceneReader reader = new SceneReader();
+                    ModelReader reader = new ModelReader();
                     GroupSceneNode node = reader.LoadFile(new AnyCAD.Platform.Path(openDlg.FileName));
                     if (node != null)
                     {
@@ -1364,17 +1409,18 @@ namespace AnyCAD.Basic
             TopoShape spline = GlobalInstance.BrepTools.MakeSpline(ptlist);
             TopoShape rect = GlobalInstance.BrepTools.MakeRectangle(20, 50, 5, Coordinate3.UNIT_XYZ);
             TopoShape line = GlobalInstance.BrepTools.MakeLine(Vector3.ZERO, new Vector3(100, 100, 0));
-            TopoShape sweepShape = GlobalInstance.BrepTools.Sweep(line, spline);
+            TopoShape sweepShape = GlobalInstance.BrepTools.Sweep(line, spline, true);
 
             renderView.ShowGeometry(sweepShape, ++shapeId);
             renderView.RequestDraw();
 
             TopoShape path1 = GlobalInstance.BrepTools.MakeLine(new Vector3(0, 0, 0), new Vector3(0, 0, 100));
             TopoShape ts1 = GlobalInstance.BrepTools.MakeLine(new Vector3(0, 0, 0), new Vector3(100, 0, 100));
-            TopoShape loft1 = GlobalInstance.BrepTools.Sweep(ts1, path1);
+            TopoShape loft1 = GlobalInstance.BrepTools.Sweep(ts1, path1, true);
 
             renderView.ShowGeometry(loft1, ++shapeId);
             renderView.RequestDraw();
+
         }
 
         private void queryInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1537,7 +1583,7 @@ namespace AnyCAD.Basic
             TopoShapeGroup lineGroup = new TopoShapeGroup();
             lineGroup.Add(line9);
             TopoShape wire =  GlobalInstance.BrepTools.MakeWire(lineGroup);
-            TopoShape sweep =  GlobalInstance.BrepTools.Sweep(profile, wire);
+            TopoShape sweep =  GlobalInstance.BrepTools.Sweep(profile, wire, true);
             //shapeGroupall.Add(sweep);
 
             //renderView.ShowGeometry(sweep, ++shapeId);
@@ -1559,7 +1605,7 @@ namespace AnyCAD.Basic
             lineGroup1.Add(line14);
             TopoShape wire1 =  GlobalInstance.BrepTools.MakeWire(lineGroup1);
 
-            TopoShape sweep1 =  GlobalInstance.BrepTools.Sweep(profile1, wire1);
+            TopoShape sweep1 =  GlobalInstance.BrepTools.Sweep(profile1, wire1, true);
             //shapeGroupall.Add(sweep1);
 
             TopoShape comp = GlobalInstance.BrepTools.BooleanAdd(sweep, sweep1);
@@ -1653,13 +1699,26 @@ namespace AnyCAD.Basic
 
         private void polygonToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //List<Vector3> points = new List<Vector3>();
+
+
+            //points.Add(new Vector3());
+            //points.Add(new Vector3(100, 0, 0));
+            //points.Add(new Vector3(200, 100, 0));
+            //points.Add(new Vector3(200, 200, 0));
+            //points.Add(new Vector3(100, 300, 0));
+            //points.Add(new Vector3(-100, 200, 0));
+            // 
+
+            //6176 13667 5096
+            //6176 13692 5096 
+            //1900 13692 5096
+            //1900 13667 5096
             List<Vector3> points = new List<Vector3>();
-            points.Add(new Vector3());
-            points.Add(new Vector3(100, 0, 0));
-            points.Add(new Vector3(200, 100, 0));
-            points.Add(new Vector3(200, 200, 0));
-            points.Add(new Vector3(100, 300, 0));
-            points.Add(new Vector3(-100, 200, 0));
+            points.Add(new Vector3(61.76f, 136.67f, 50.96f));
+            points.Add(new Vector3(61.76f, 136.92f, 50.96f));
+            points.Add(new Vector3(19.00f, 136.92f, 50.96f));
+            points.Add(new Vector3(19.00f, 136.67f, 50.96f));
             TopoShape plygon = GlobalInstance.BrepTools.MakePolygon(points);
             TopoShape face = GlobalInstance.BrepTools.MakeFace(plygon);
             renderView.ShowGeometry(face, ++shapeId);
@@ -1723,10 +1782,10 @@ namespace AnyCAD.Basic
             TopoShape box = GlobalInstance.BrepTools.MakeBox(Vector3.ZERO, Vector3.UNIT_Z, Vector3.UNIT_SCALE);
             RenderableGeometry geom = new RenderableGeometry();
             geom.SetGeometry(box);
-
-            for (int ii = 0; ii < 100; ++ii)
+            geom.SetShapeFilter((int)EnumPickMode.RF_Face);// only display face
+            for (int ii = 0; ii < 10; ++ii)
             {
-                for (int jj = 0; jj < 200; ++jj)
+                for (int jj = 0; jj < 20; ++jj)
                 {
                     EntitySceneNode node = new EntitySceneNode();
                     node.SetEntity(geom);
@@ -1850,10 +1909,175 @@ namespace AnyCAD.Basic
             TopoShape solid = GlobalInstance.BrepTools.MakeSolid(faces);
             TopoShapeProperty property = new TopoShapeProperty();
             property.SetShape(solid);
-            float vol = property.SolidVolume();
+            double vol = property.SolidVolume();
 
             MessageBox.Show(String.Format("{0}", vol));
         }
 
+        private void gridPositionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WorkingPlane wp = renderView.Renderer.GetWorkingPlane();
+            wp.SetPosition(new Vector3(0, 0, 100));
+
+            renderView.RequestDraw();
+        }
+
+        int nLoadCount = 0;
+        private void loadLinesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "The Lines(*.txt;*.out)|*.txt;*.out";
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+
+            if (nLoadCount > 1)
+                nLoadCount = 0;
+
+            LineStyle ls = new LineStyle();
+            ls.SetColor(255 * nLoadCount, 0, 0);
+            ls.SetLineWidth(2 + nLoadCount);
+            ++nLoadCount;
+            
+
+            String fileName = dlg.FileName;
+            StreamReader sr = new StreamReader(fileName, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {             
+                String[] items = line.Split(' ');
+                if (items.Length == 2)
+                {
+                    int nCount = int.Parse(items[1]);
+                    while (nCount > 0)
+                    {
+                        --nCount;
+
+                        Vector3 pt1 = new Vector3();
+                        line = sr.ReadLine();
+                        items = line.Split(' ');                       
+                        if (items.Length == 3)
+                        {
+
+                            pt1.X = float.Parse(items[0]);
+                            pt1.Y = float.Parse(items[1]);
+                            pt1.Z = float.Parse(items[2]);
+                        }
+
+                        Vector3 pt2 = new Vector3();
+                        line = sr.ReadLine();
+                        items = line.Split(' ');
+                        if (items.Length == 3)
+                        {
+
+                            pt2.X = float.Parse(items[0]);
+                            pt2.Y = float.Parse(items[1]);
+                            pt2.Z = float.Parse(items[2]);
+                        }
+
+                        LineNode node = new LineNode();
+                        node.SetStartPt(pt1);
+                        node.SetEndPt(pt2);
+                        node.SetLineStyle(ls);
+
+                        renderView.ShowSceneNode(node);
+                    }
+
+                }
+
+            }
+        }
+
+        private void loadPointsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "The Lines(*.txt;*.pts)|*.txt;*.pts";
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+
+                        String fileName = dlg.FileName;
+            StreamReader sr = new StreamReader(fileName, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                String[] items = line.Split('\t');
+                if (items.Length == 4)    
+                {
+                    String id = items[0];
+
+                    Vector3 pt1 = new Vector3();
+                    pt1.X = float.Parse(items[1]);
+                    pt1.Y = float.Parse(items[2]);
+                    pt1.Z = float.Parse(items[3]);
+
+                    PointNode pn = new PointNode();
+                    pn.SetName(id);
+                    pn.SetPoint(pt1);
+                    pn.SetShowText(true);
+
+                    renderView.ShowSceneNode(pn);
+                }
+            }
+        }
+
+        private void iteratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SceneNodeIterator itr = renderView.SceneManager.NewSceneNodeIterator();
+            while (itr.More())
+            {
+                SceneNode node = itr.Next();
+                MessageBox.Show(node.GetName());
+            }
+        }
+
+        private void tTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TopoShape arc = GlobalInstance.BrepTools.MakeArc(Vector3.ZERO, 100, 0, 135, Vector3.UNIT_Z);
+            TopoShape cir = GlobalInstance.BrepTools.MakeCircle(new Vector3(-200, 0, 0), 50, Vector3.UNIT_X);
+            TopoShape surf1 = GlobalInstance.BrepTools.Extrude(arc, 100, Vector3.UNIT_Z);
+            TopoShape surf2 = GlobalInstance.BrepTools.Extrude(cir, 400, Vector3.UNIT_X);
+            TopoShape wire = GlobalInstance.BrepTools.SurfaceSection(surf1, surf2);
+
+            renderView.ShowGeometry(surf1, 100);
+            renderView.ShowGeometry(surf2, 100);
+            var no = renderView.ShowGeometry(wire, 100);
+            LineStyle ls = new LineStyle();
+            ls.SetColor(255, 0, 0);
+            ls.SetLineWidth(4);
+            no.SetLineStyle(ls);
+        }
+
+        private void axesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AxesWidget axes = new AxesWidget();
+            Matrix4 trf = GlobalInstance.MatrixBuilder.MakeTranslate(100, 100, 100);
+            axes.SetTransform(trf);
+
+            renderView.ShowSceneNode(axes);
+        } 
+
+        private void arrowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ArrowWidget arrow = new ArrowWidget();
+            Matrix4 trf = GlobalInstance.MatrixBuilder.MakeTranslate(100, 100, 100);
+            arrow.SetTransform(trf);
+
+            renderView.ShowSceneNode(arrow);
+        }
+
+        private void sKPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "SKP (*.skp)|*.skp|All Files(*.*)|*.*";
+
+            if (DialogResult.OK != dlg.ShowDialog())
+                return;
+            
+            ModelReader reader = new ModelReader();
+            GroupSceneNode node = reader.LoadFile(new AnyCAD.Platform.Path(dlg.FileName));
+            if (node != null)
+            {
+                renderView.ShowSceneNode(node);
+            }
+        }
     }
 }

@@ -25,26 +25,33 @@ namespace AnyCAD.Basic
 
         public override bool OnBeiginComplexShape(TopoShape shape)
         {
-            return true;
+            ShapeGroup.Add(shape);
+            return false;
         }
 
         public override void OnEndComplexShape()
         {
-      
+            
         }
 
         public override void OnFace(TopoShape shape)
         {
- 
+            ShapeGroup.Add(shape);
         }
 
         public override void OnWire(TopoShape shape)
         {
+
             ShapeGroup.Add(shape);
+
         }
 
         public override void OnEdge(TopoShape shape)
         {
+            //ShapeGroup.Add(shape);
+            //var newShape = GlobalInstance.BrepTools.ProjectOnPlane(shape, new Vector3(0, 0, 200), new Vector3(-1, 0, -1), Vector3.UNIT_Z);
+
+            //shape = GlobalInstance.BrepTools.MakeLoft(shape, newShape, false);
             ShapeGroup.Add(shape);
         }
 

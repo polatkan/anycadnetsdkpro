@@ -52,8 +52,8 @@ namespace AnyCAD.Basic
             if(nCount < 1)
                 return;
 
-            float u = intersector.GetParameterU(1);
-            float v = intersector.GetParameterV(1);
+            double u = intersector.GetParameterU(1);
+            double v = intersector.GetParameterV(1);
 
             Vector3 pt = surface.Value(u, v);
             Vector3 normal = surface.GetNormal(u, v);
